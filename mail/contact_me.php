@@ -21,8 +21,11 @@
     $email_subject = "Contact Form:  $name";
     
     $email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-    $headers = "From: $from\r\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-    $headers .= "Reply-To: $email_address\r\n";	
+    $headers = "From: $from \r\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
+    $headers .= "Reply-To: $email_address \r\n";
+    $headers .= "Return-Path: $from\r\n";
+    $headers .= "X-Mailer: PHP \r\n";
+
     if (mail($to,$email_subject,$email_body,$headers))
     {
         return true;
